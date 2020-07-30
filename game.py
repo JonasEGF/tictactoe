@@ -1,66 +1,56 @@
+from os import system, name 
+
+def clear(): 
+    # for windows 
+    if name == 'nt': 
+        _ = system('cls') 
+    # for mac and linux(here, os.name is 'posix') 
+    else:
+        _ = system('clear')
+def mostrar():
+    print(f'{negocio[0:3]}\n{negocio[3:6]}\n{negocio[6:9]}')
+
+def jogar():
+    coord = int(input('Choose one \n 0 | 1 | 2  \n 3 | 4 | 5\n 6 | 7 | 8'))
+    esc = str(input('X or O?')).upper()
+    if esc not in ['x','X','o','O']:
+        play = 'n'
+        return('EEROU')
+    else:
+        if coord in range(9):
+            negocio[coord] = esc
+        else:
+            return('OPA OPA PAROU')
+            play = 'n'
 play = input('Do you want to play? y/n')
-if play == 'n':
+if play != 'y':
     print('ok')
-elif play == 'y':
+else:
+    negocio = []
+    play == 'y'
     print('Tic Tac Toe')
-    line1 = [' ', ' ', ' ']
-    line2 = [' ', ' ', ' ']
-    line3 = [' ', ' ', ' ']
+    for i in range(9):
+        negocio += " "
     while play == 'y':
         for item in range(9):
-            coord = input('Choose one \n 0 | 1 | 2  \n 3 | 4 | 5\n 6 | 7 | 8')
-            esc = input('X or O?')
-            esc = esc.upper()
-            if esc != 'X' and 'O':
-                play = 'n'
-                print('Wrong')
-            else:
-                if coord == '0':
-                    line1[0] = esc
-                elif coord == '1':
-                    line1[1] = esc
-                elif coord == '2':
-                    line1[2] = esc
-                elif coord == '3':
-                    line2[0] = esc
-                elif coord == '4':
-                    line2[1] = esc
-                elif coord == '5':
-                    line2[2] = esc
-                elif coord == '6':
-                    line3[0] = esc
-                elif coord == '7':
-                    line3[1] = esc
-                elif coord == '8':
-                    line3[2] = esc
-                else:
-                    print('Invalid Value')
+                clear()
+                mostrar()
+                jogar()
+                diagonal1 = negocio[0]+negocio[4]+negocio[8]
+                diagonal2 = negocio[2]+negocio[4]+negocio[6]
+                vert1 = negocio[0]+negocio[1]+negocio[2]
+                vert2 = negocio[3]+negocio[4]+negocio[5]
+                vert3 = negocio[6]+negocio[7]+negocio[8]
+                if 'XXX' in [diagonal1,diagonal2,vert1,vert2,vert3]:
+                    clear()
+                    mostrar()
+                    print('XXX')
                     play = 'n'
-                diagonal1 = ''.join(line1[0] + line2[1] + line3[2])
-                diagonal2 = ''.join(line1[2] + line2[1] + line3[0])
-                vert1 = ''.join(line1[0] + line2[0] + line3[0])
-                vert2 = ''.join(line1[1] + line2[1] + line3[1])
-                vert3 = ''.join(line1[2] + line2[2] + line3[2])
-                print(f"{line1}\n{line2}\n{line3}")
-                if 'XXX' in ''.join(line1) or 'XXX' in ''.join(line2) or 'XXX' in ''.join(line3):
-                    print('XXX')
                     break
-                elif 'XXX' in diagonal1 or 'XXX' in diagonal2:
-                    print('X  X\n X\nX X')
-                    break
-                elif 'XXX' in vert1 or 'XXX' in vert2 or 'XXX' in vert3:
-                    print('XXX')
-                    break
-                elif 'OOO' in ''.join(line1) or 'OOO' in ''.join(line2) or 'OOO' in ''.join(line3):
+                elif 'OOO' in [diagonal1,diagonal2,vert1,vert2,vert3]:
+                    clear()
+                    mostrar()
                     print('OOO')
+                    play = 'n'
                     break
-                elif 'OOO' in diagonal1 or 'OOO' in diagonal2:
-                    print('O  O\n X\nO O')
-                    break
-                elif 'OOO' in vert1 or 'OOO' in vert2 or 'OOO' in vert3:
-                    print('OOO')
-                    break
-            play = input('Quer jogar de novo? y/n')
-            if play == 'n':
-                print('Bye')
-                break
+        print('Adeus')
