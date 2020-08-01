@@ -41,13 +41,16 @@ else:
                 vert1 = negocio[0]+negocio[1]+negocio[2]
                 vert2 = negocio[3]+negocio[4]+negocio[5]
                 vert3 = negocio[6]+negocio[7]+negocio[8]
-                if 'XXX' in [diagonal1,diagonal2,vert1,vert2,vert3]:
+                horiz = negocio[0]+negocio[3]+negocio[6]
+                horiz2 = negocio[1]+negocio[4]+negocio[7]
+                horiz3 = negocio[2]+negocio[5]+negocio[8]
+                if 'XXX' in [diagonal1,diagonal2,vert1,vert2,vert3,horiz,horiz2,horiz3]:
                     clear()
                     mostrar()
                     print('XXX')
                     play = 'n'
                     break
-                elif 'OOO' in [diagonal1,diagonal2,vert1,vert2,vert3]:
+                elif 'OOO' in [diagonal1,diagonal2,vert1,vert2,vert3,horiz,horiz2,horiz3]:
                     clear()
                     mostrar()
                     print('OOO')
